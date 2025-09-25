@@ -1,0 +1,123 @@
+---
+clusterName: goldentooth
+talosVersion: v1.11.1
+kubernetesVersion: v1.34.0
+endpoint: https://10.4.0.10:6443
+domain: cluster.local
+allowSchedulingOnControlPlanes: true
+additionalApiServerCertSans:
+  - 10.4.0.10
+  - 10.4.0.11
+  - 10.4.0.12
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.96.0.0/12
+patches: []
+nodes:
+  - hostname: allyrion
+    ipAddress: 10.4.0.10
+    installDisk: /dev/mmcblk0
+    controlPlane: true
+    nodeLabels:
+      slot: 'A'
+    nodeAnnotations:
+      slot: 'A'
+  - hostname: bettley
+    ipAddress: 10.4.0.11
+    installDisk: /dev/mmcblk0
+    controlPlane: true
+    nodeLabels:
+      slot: 'B'
+    nodeAnnotations:
+      slot: 'B'
+  - hostname: cargyll
+    ipAddress: 10.4.0.12
+    installDisk: /dev/mmcblk0
+    controlPlane: true
+    nodeLabels:
+      slot: 'C'
+    nodeAnnotations:
+      slot: 'C'
+  - hostname: dalt
+    ipAddress: 10.4.0.13
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'D'
+    nodeAnnotations:
+      slot: 'D'
+  - hostname: erenford
+    ipAddress: 10.4.0.14
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'E'
+    nodeAnnotations:
+      slot: 'E'
+  - hostname: fenn
+    ipAddress: 10.4.0.15
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'F'
+    nodeAnnotations:
+      slot: 'F'
+  - hostname: gardener
+    ipAddress: 10.4.0.16
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'G'
+    nodeAnnotations:
+      slot: 'G'
+  - hostname: harlton
+    ipAddress: 10.4.0.17
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'H'
+    nodeAnnotations:
+      slot: 'H'
+  - hostname: inchfield
+    ipAddress: 10.4.0.18
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'I'
+    nodeAnnotations:
+      slot: 'I'
+  - hostname: jast
+    ipAddress: 10.4.0.19
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'J'
+    nodeAnnotations:
+      slot: 'J'
+  - hostname: karstark
+    ipAddress: 10.4.0.20
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'K'
+    nodeAnnotations:
+      slot: 'K'
+  - hostname: lipps
+    ipAddress: 10.4.0.21
+    installDisk: /dev/mmcblk0
+    controlPlane: false
+    nodeLabels:
+      slot: 'L'
+    nodeAnnotations:
+      slot: 'L'
+controlPlane:
+  patches: []
+worker:
+  patches: []
+  schematic:
+    customization:
+      systemExtensions:
+        officialExtensions:
+          - siderolabs/iscsi-tools
+          - siderolabs/util-linux-tools

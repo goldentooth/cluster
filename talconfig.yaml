@@ -2,13 +2,14 @@
 clusterName: goldentooth
 talosVersion: v1.11.1
 kubernetesVersion: v1.34.0
-endpoint: https://10.4.0.10:6443
+endpoint: https://cp.k8s.goldentooth.net:6443
 domain: cluster.local
 allowSchedulingOnControlPlanes: true
 additionalApiServerCertSans:
   - 10.4.0.10
   - 10.4.0.11
   - 10.4.0.12
+  - cp.k8s.goldentooth.net
 clusterPodNets:
   - 10.244.0.0/16
 clusterSvcNets:

@@ -56,6 +56,14 @@ nodes:
       slot: 'E'
     nodeAnnotations:
       slot: 'E'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 1GiB
+        filesystem:
+          type: xfs
   - hostname: fenn
     ipAddress: 10.4.0.15
     installDisk: /dev/mmcblk0
@@ -64,6 +72,14 @@ nodes:
       slot: 'F'
     nodeAnnotations:
       slot: 'F'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: gardener
     ipAddress: 10.4.0.16
     installDisk: /dev/mmcblk0
@@ -72,6 +88,14 @@ nodes:
       slot: 'G'
     nodeAnnotations:
       slot: 'G'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: harlton
     ipAddress: 10.4.0.17
     installDisk: /dev/mmcblk0
@@ -88,6 +112,14 @@ nodes:
       slot: 'I'
     nodeAnnotations:
       slot: 'I'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: jast
     ipAddress: 10.4.0.19
     installDisk: /dev/mmcblk0
@@ -96,6 +128,14 @@ nodes:
       slot: 'J'
     nodeAnnotations:
       slot: 'J'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: karstark
     ipAddress: 10.4.0.20
     installDisk: /dev/mmcblk0
@@ -104,6 +144,14 @@ nodes:
       slot: 'K'
     nodeAnnotations:
       slot: 'K'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: lipps
     ipAddress: 10.4.0.21
     installDisk: /dev/mmcblk0
@@ -112,6 +160,14 @@ nodes:
       slot: 'L'
     nodeAnnotations:
       slot: 'L'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
 controlPlane:
   patches: []
 worker:

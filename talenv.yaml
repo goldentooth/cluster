@@ -1,0 +1,1 @@
+SOPS_AGE_KEY_CMD: 'op read op://Goldentooth/talhelper_age_key/password'

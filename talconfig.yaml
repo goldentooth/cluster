@@ -77,7 +77,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
   - hostname: gardener
@@ -93,7 +93,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
   - hostname: harlton
@@ -117,7 +117,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
   - hostname: jast
@@ -133,7 +133,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
   - hostname: karstark
@@ -149,7 +149,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
   - hostname: lipps
@@ -165,7 +165,7 @@ nodes:
         provisioning:
           diskSelector:
             match: disk.transport == "usb"
-          minSize: 100GiB
+          minSize: 1GiB
         filesystem:
           type: xfs
 controlPlane:

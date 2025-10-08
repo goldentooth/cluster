@@ -168,12 +168,6 @@ nodes:
           minSize: 1GiB
         filesystem:
           type: xfs
-    networkInterfaces:
-      - interface: end0
-        dhcp: true
-        routes:
-          - network: 10.4.11.0/24
-            interface: end0
   - hostname: manderly
     ipAddress: 10.4.0.22
     installDisk: /dev/mmcblk0
@@ -182,12 +176,6 @@ nodes:
       slot: 'M'
     nodeAnnotations:
       slot: 'M'
-    networkInterfaces:
-      - interface: end0
-        dhcp: true
-        routes:
-          - network: 10.4.11.0/24
-            interface: end0
   - hostname: norcross
     ipAddress: 10.4.0.23
     installDisk: /dev/mmcblk0
@@ -196,12 +184,6 @@ nodes:
       slot: 'N'
     nodeAnnotations:
       slot: 'N'
-    networkInterfaces:
-      - interface: end0
-        dhcp: true
-        routes:
-          - network: 10.4.11.0/24
-            interface: end0
   - hostname: oakheart
     ipAddress: 10.4.0.24
     installDisk: /dev/mmcblk0
@@ -210,12 +192,6 @@ nodes:
       slot: 'O'
     nodeAnnotations:
       slot: 'O'
-    networkInterfaces:
-      - interface: end0
-        dhcp: true
-        routes:
-          - network: 10.4.11.0/24
-            interface: end0
   - hostname: payne
     ipAddress: 10.4.0.25
     installDisk: /dev/mmcblk0
@@ -224,12 +200,6 @@ nodes:
       slot: 'P'
     nodeAnnotations:
       slot: 'P'
-    networkInterfaces:
-      - interface: end0
-        dhcp: true
-        routes:
-          - network: 10.4.11.0/24
-            interface: end0
 controlPlane:
   patches: []
 worker:

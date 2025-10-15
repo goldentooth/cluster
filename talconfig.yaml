@@ -6,6 +6,7 @@ endpoint: https://cp.k8s.goldentooth.net:6443
 domain: cluster.local
 allowSchedulingOnControlPlanes: true
 additionalApiServerCertSans:
+  - 10.4.0.9
   - 10.4.0.10
   - 10.4.0.11
   - 10.4.0.12
@@ -201,7 +202,15 @@ nodes:
     nodeAnnotations:
       slot: 'P'
 controlPlane:
-  patches: []
+  patches:
+    - |-
+      machine:
+        network:
+          interfaces:
+            - interface: end0
+              dhcp: true
+              vip:
+                ip: 10.4.0.9
 worker:
   patches: []
   schematic:

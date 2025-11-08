@@ -201,6 +201,16 @@ nodes:
       slot: 'P'
     nodeAnnotations:
       slot: 'P'
+  - hostname: velaryon
+    ipAddress: 10.4.0.30
+    installDisk: /dev/nvme0n1
+    controlPlane: false
+    nodeLabels:
+      role: 'gpu'
+      slot: 'X'
+    nodeAnnotations:
+      role: 'gpu'
+      slot: 'X'
 controlPlane:
   patches:
     - |-

@@ -15,7 +15,14 @@ clusterPodNets:
   - 10.244.0.0/16
 clusterSvcNets:
   - 10.96.0.0/12
-patches: []
+patches:
+  - |-
+    cluster:
+      network:
+        cni:
+          name: none
+      proxy:
+        disabled: true
 nodes:
   - hostname: allyrion
     ipAddress: 10.4.0.10

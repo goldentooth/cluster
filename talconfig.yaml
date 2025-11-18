@@ -62,6 +62,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'E'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'E'
     userVolumes:
@@ -78,6 +79,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'F'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'F'
     userVolumes:
@@ -94,6 +96,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'G'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'G'
     userVolumes:
@@ -118,6 +121,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'I'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'I'
     userVolumes:
@@ -150,6 +154,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'K'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'K'
     userVolumes:
@@ -166,6 +171,7 @@ nodes:
     controlPlane: false
     nodeLabels:
       slot: 'L'
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'L'
     userVolumes:

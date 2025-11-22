@@ -221,6 +221,7 @@ nodes:
     nodeLabels:
       role: 'gpu'
       slot: 'X'
+      nvidia.com/gpu.present: 'true'
     nodeAnnotations:
       role: 'gpu'
       slot: 'X'

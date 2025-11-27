@@ -240,6 +240,7 @@ nodes:
               - name: nvidia_modeset
           sysctls:
             net.core.bpf_jit_harden: 1
+            user.max_user_namespaces: "100"
 controlPlane:
   patches:
     - |-

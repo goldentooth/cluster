@@ -249,6 +249,10 @@ nodes:
             net.core.bpf_jit_harden: 1
             user.max_user_namespaces: "100"
             vm.max_map_count: "524288"
+          udev:
+            rules:
+              # Make input devices readable by all users (for Steam/gaming)
+              - 'KERNEL=="event*", SUBSYSTEM=="input", MODE="0666"'
 controlPlane:
   patches:
     - |-

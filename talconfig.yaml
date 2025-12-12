@@ -227,6 +227,7 @@ nodes:
       slot: 'X'
     nodeTaints:
       gpu: "true:NoSchedule"
+      platform: "x86:NoSchedule"
     overridePatches: true
     schematic:
       customization:

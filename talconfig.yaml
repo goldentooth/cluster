@@ -1,6 +1,6 @@
 ---
 clusterName: goldentooth
-talosVersion: v1.11.1
+talosVersion: v1.12.5
 kubernetesVersion: v1.34.0
 endpoint: https://cp.k8s.goldentooth.net:6443
 domain: cluster.local
@@ -203,6 +203,24 @@ nodes:
       cpu.arch: armv8.2-a
     nodeAnnotations:
       slot: 'M'
+    schematic:
+      overlay:
+        name: rpi_5
+        image: siderolabs/sbc-raspberrypi
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
+            - siderolabs/gvisor
+    userVolumes:
+      - name: nvme
+        provisioning:
+          diskSelector:
+            match: disk.transport == "nvme"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: norcross
     ipAddress: 10.4.0.23
     installDisk: /dev/mmcblk0
@@ -212,6 +230,24 @@ nodes:
       cpu.arch: armv8.2-a
     nodeAnnotations:
       slot: 'N'
+    schematic:
+      overlay:
+        name: rpi_5
+        image: siderolabs/sbc-raspberrypi
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
+            - siderolabs/gvisor
+    userVolumes:
+      - name: nvme
+        provisioning:
+          diskSelector:
+            match: disk.transport == "nvme"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: oakheart
     ipAddress: 10.4.0.24
     installDisk: /dev/mmcblk0
@@ -221,6 +257,24 @@ nodes:
       cpu.arch: armv8.2-a
     nodeAnnotations:
       slot: 'O'
+    schematic:
+      overlay:
+        name: rpi_5
+        image: siderolabs/sbc-raspberrypi
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
+            - siderolabs/gvisor
+    userVolumes:
+      - name: nvme
+        provisioning:
+          diskSelector:
+            match: disk.transport == "nvme"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: payne
     ipAddress: 10.4.0.25
     installDisk: /dev/mmcblk0
@@ -230,6 +284,24 @@ nodes:
       cpu.arch: armv8.2-a
     nodeAnnotations:
       slot: 'P'
+    schematic:
+      overlay:
+        name: rpi_5
+        image: siderolabs/sbc-raspberrypi
+      customization:
+        systemExtensions:
+          officialExtensions:
+            - siderolabs/iscsi-tools
+            - siderolabs/util-linux-tools
+            - siderolabs/gvisor
+    userVolumes:
+      - name: nvme
+        provisioning:
+          diskSelector:
+            match: disk.transport == "nvme"
+          minSize: 100GiB
+        filesystem:
+          type: xfs
   - hostname: velaryon
     ipAddress: 10.4.0.30
     installDisk: /dev/nvme0n1
@@ -282,7 +354,18 @@ controlPlane:
               vip:
                 ip: 10.4.0.9
 worker:
-  patches: []
+  patches:
+    - |-
+      machine:
+        kubelet:
+          extraMounts:
+            - destination: /var/lib/longhorn
+              type: bind
+              source: /var/lib/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
   schematic:
     customization:
       systemExtensions:

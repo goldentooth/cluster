@@ -4,7 +4,7 @@ talosVersion: v1.12.5
 kubernetesVersion: v1.34.0
 endpoint: https://cp.k8s.goldentooth.net:6443
 domain: cluster.local
-allowSchedulingOnControlPlanes: true
+allowSchedulingOnControlPlanes: false
 additionalApiServerCertSans:
   - 10.4.0.9
   - 10.4.0.10

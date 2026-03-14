@@ -70,14 +70,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'E'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: fenn
     ipAddress: 10.4.0.15
     installDisk: /dev/mmcblk0
@@ -88,14 +80,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'F'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: gardener
     ipAddress: 10.4.0.16
     installDisk: /dev/mmcblk0
@@ -106,14 +90,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'G'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: harlton
     ipAddress: 10.4.0.17
     installDisk: /dev/mmcblk0
@@ -133,14 +109,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'I'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: jast
     ipAddress: 10.4.0.19
     installDisk: /dev/mmcblk0
@@ -150,14 +118,6 @@ nodes:
       cpu.arch: armv8.0-a
     nodeAnnotations:
       slot: 'J'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: karstark
     ipAddress: 10.4.0.20
     installDisk: /dev/mmcblk0
@@ -168,14 +128,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'K'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: lipps
     ipAddress: 10.4.0.21
     installDisk: /dev/mmcblk0
@@ -186,14 +138,6 @@ nodes:
       storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'L'
-    userVolumes:
-      - name: usb
-        provisioning:
-          diskSelector:
-            match: disk.transport == "usb"
-          minSize: 1GiB
-        filesystem:
-          type: xfs
   - hostname: manderly
     ipAddress: 10.4.0.22
     installDisk: /dev/mmcblk0

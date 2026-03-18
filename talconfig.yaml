@@ -23,6 +23,13 @@ patches:
           name: none
       proxy:
         disabled: true
+  - |-
+    machine:
+      registries:
+        config:
+          registry.goldentooth.net:
+            tls:
+              ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ0akNDQVYyZ0F3SUJBZ0lRSDV1eERUaVlLbm5oME5KK1drU0Y2ekFLQmdncWhrak9QUVFEQWpBNk1SY3cKRlFZRFZRUUtFdzVIYjJ4a1pXNTBiMjkwYUNCRFFURWZNQjBHQTFVRUF4TVdSMjlzWkdWdWRHOXZkR2dnUTBFZwpVbTl2ZENCRFFUQWVGdzB5TlRFeE1UVXlNakV5TWpCYUZ3MHpOVEV4TVRNeU1qRXlNakJhTURveEZ6QVZCZ05WCkJBb1REa2R2YkdSbGJuUnZiM1JvSUVOQk1SOHdIUVlEVlFRREV4WkhiMnhrWlc1MGIyOTBhQ0JEUVNCU2IyOTAKSUVOQk1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRXZaTmhwamhQNWIvLzMxMGJ2TmhOcVRicAphZFJ1QkdzRjBsa3lTcW9pZWphNXV1c1VkZ3FybzZ0dWFrZjdjczZ0eFEwTWpLb2JoMmV5bFh4VkdyMjNkS05GCk1FTXdEZ1lEVlIwUEFRSC9CQVFEQWdFR01CSUdBMVVkRXdFQi93UUlNQVlCQWY4Q0FRRXdIUVlEVlIwT0JCWUUKRkhTQkJYZGRONXZKdzNCL29uaWdYOCtZVVFTL01Bb0dDQ3FHU000OUJBTUNBMGNBTUVRQ0lBLzZMQzhCNm9kcwpJQzNZYVVjVzNOTW1KL1lWcTJtWXZadHhJNzlFajd3akFpQVdmZTRWYktTT055WUJRa3MwUzJIMDdhUFRoejllCkdqTE9Ia3A4ZkxIS3BRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==
 nodes:
   - hostname: allyrion
     ipAddress: 10.4.0.10
@@ -67,9 +74,17 @@ nodes:
     nodeLabels:
       slot: 'E'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'E'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: fenn
     ipAddress: 10.4.0.15
     installDisk: /dev/mmcblk0
@@ -77,9 +92,17 @@ nodes:
     nodeLabels:
       slot: 'F'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'F'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: gardener
     ipAddress: 10.4.0.16
     installDisk: /dev/mmcblk0
@@ -87,9 +110,17 @@ nodes:
     nodeLabels:
       slot: 'G'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'G'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: harlton
     ipAddress: 10.4.0.17
     installDisk: /dev/mmcblk0
@@ -97,8 +128,17 @@ nodes:
     nodeLabels:
       slot: 'H'
       cpu.arch: armv8.0-a
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'H'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: inchfield
     ipAddress: 10.4.0.18
     installDisk: /dev/mmcblk0
@@ -106,9 +146,17 @@ nodes:
     nodeLabels:
       slot: 'I'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'I'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: jast
     ipAddress: 10.4.0.19
     installDisk: /dev/mmcblk0
@@ -116,8 +164,17 @@ nodes:
     nodeLabels:
       slot: 'J'
       cpu.arch: armv8.0-a
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'J'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: karstark
     ipAddress: 10.4.0.20
     installDisk: /dev/mmcblk0
@@ -125,9 +182,17 @@ nodes:
     nodeLabels:
       slot: 'K'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'K'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: lipps
     ipAddress: 10.4.0.21
     installDisk: /dev/mmcblk0
@@ -135,9 +200,17 @@ nodes:
     nodeLabels:
       slot: 'L'
       cpu.arch: armv8.0-a
-      storage.seaweedfs/volume: 'true'
+      storage.goldentooth.net/usb: 'true'
     nodeAnnotations:
       slot: 'L'
+    userVolumes:
+      - name: usb
+        provisioning:
+          diskSelector:
+            match: disk.transport == "usb"
+          minSize: 25GiB
+        filesystem:
+          type: ext4
   - hostname: manderly
     ipAddress: 10.4.0.22
     installDisk: /dev/mmcblk0
@@ -145,6 +218,8 @@ nodes:
     nodeLabels:
       slot: 'M'
       cpu.arch: armv8.2-a
+      node.kubernetes.io/disk-type: nvme
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'M'
     schematic:
@@ -172,6 +247,8 @@ nodes:
     nodeLabels:
       slot: 'N'
       cpu.arch: armv8.2-a
+      node.kubernetes.io/disk-type: nvme
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'N'
     schematic:
@@ -199,6 +276,8 @@ nodes:
     nodeLabels:
       slot: 'O'
       cpu.arch: armv8.2-a
+      node.kubernetes.io/disk-type: nvme
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'O'
     schematic:
@@ -226,6 +305,8 @@ nodes:
     nodeLabels:
       slot: 'P'
       cpu.arch: armv8.2-a
+      node.kubernetes.io/disk-type: nvme
+      storage.seaweedfs/volume: 'true'
     nodeAnnotations:
       slot: 'P'
     schematic:
@@ -306,6 +387,13 @@ worker:
             - destination: /var/lib/longhorn
               type: bind
               source: /var/lib/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
+            - destination: /var/mnt/usb
+              type: bind
+              source: /var/mnt/usb
               options:
                 - bind
                 - rshared

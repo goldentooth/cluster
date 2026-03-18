@@ -84,7 +84,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: fenn
     ipAddress: 10.4.0.15
     installDisk: /dev/mmcblk0
@@ -102,7 +102,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: gardener
     ipAddress: 10.4.0.16
     installDisk: /dev/mmcblk0
@@ -120,7 +120,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: harlton
     ipAddress: 10.4.0.17
     installDisk: /dev/mmcblk0
@@ -138,7 +138,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: inchfield
     ipAddress: 10.4.0.18
     installDisk: /dev/mmcblk0
@@ -156,7 +156,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: jast
     ipAddress: 10.4.0.19
     installDisk: /dev/mmcblk0
@@ -174,7 +174,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: karstark
     ipAddress: 10.4.0.20
     installDisk: /dev/mmcblk0
@@ -192,7 +192,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   - hostname: lipps
     ipAddress: 10.4.0.21
     installDisk: /dev/mmcblk0
@@ -210,7 +210,7 @@ nodes:
             match: disk.transport == "usb"
           minSize: 25GiB
         filesystem:
-          type: ext4
+          type: xfs
   # Pi 5 nodes (MNOP) run Ubuntu Server due to Talos compatibility issues.
   # Their node labels (node.kubernetes.io/disk-type=nvme,
   # storage.seaweedfs/volume=true) are managed via kubectl.

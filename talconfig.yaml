@@ -270,6 +270,10 @@ worker:
   patches:
     - |-
       machine:
+        install:
+          extraKernelArgs:
+            - modprobe.blacklist=ipmi_si,ipmi_poweroff
+          grubUseUKICmdline: false
         kubelet:
           extraMounts:
             - destination: /var/lib/longhorn

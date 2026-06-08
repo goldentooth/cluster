@@ -38,9 +38,8 @@ patches:
 #     control-plane VIP 10.4.0.9). Resolving them via public 8.8.8.8/1.1.1.1 was
 #     unreliable under load (CoreDNS upstream UDP i/o timeouts); the LAN resolver
 #     is a local hop and returns the same correct answers.
-#   - autopath @kubernetes: collapse client search-domain expansion server-side,
-#     eliminating the ~2.5:1 NXDOMAIN amplification (ndots:5) that was driving the
-#     upstream-forward overload.
+# (autopath was evaluated but needs `pods verified` to function; the ndots:5
+# NXDOMAIN amplification is instead absorbed per-node by NodeLocal DNSCache.)
 inlineManifests:
   - name: coredns-corefile
     contents: |
@@ -61,7 +60,6 @@ inlineManifests:
                   class error
               }
               prometheus :9153
-              autopath @kubernetes
               kubernetes cluster.local in-addr.arpa ip6.arpa {
                   pods insecure
                   fallthrough in-addr.arpa ip6.arpa

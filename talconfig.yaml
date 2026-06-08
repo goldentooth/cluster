@@ -30,6 +30,55 @@ patches:
           registry.goldentooth.net:
             tls:
               ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ0akNDQVYyZ0F3SUJBZ0lRSDV1eERUaVlLbm5oME5KK1drU0Y2ekFLQmdncWhrak9QUVFEQWpBNk1SY3cKRlFZRFZRUUtFdzVIYjJ4a1pXNTBiMjkwYUNCRFFURWZNQjBHQTFVRUF4TVdSMjlzWkdWdWRHOXZkR2dnUTBFZwpVbTl2ZENCRFFUQWVGdzB5TlRFeE1UVXlNakV5TWpCYUZ3MHpOVEV4TVRNeU1qRXlNakJhTURveEZ6QVZCZ05WCkJBb1REa2R2YkdSbGJuUnZiM1JvSUVOQk1SOHdIUVlEVlFRREV4WkhiMnhrWlc1MGIyOTBhQ0JEUVNCU2IyOTAKSUVOQk1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRXZaTmhwamhQNWIvLzMxMGJ2TmhOcVRicAphZFJ1QkdzRjBsa3lTcW9pZWphNXV1c1VkZ3FybzZ0dWFrZjdjczZ0eFEwTWpLb2JoMmV5bFh4VkdyMjNkS05GCk1FTXdEZ1lEVlIwUEFRSC9CQVFEQWdFR01CSUdBMVVkRXdFQi93UUlNQVlCQWY4Q0FRRXdIUVlEVlIwT0JCWUUKRkhTQkJYZGRONXZKdzNCL29uaWdYOCtZVVFTL01Bb0dDQ3FHU000OUJBTUNBMGNBTUVRQ0lBLzZMQzhCNm9kcwpJQzNZYVVjVzNOTW1KL1lWcTJtWXZadHhJNzlFajd3akFpQVdmZTRWYktTT055WUJRa3MwUzJIMDdhUFRoejllCkdqTE9Ia3A4ZkxIS3BRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==
+# Custom CoreDNS Corefile, applied declaratively so it survives Talos upgrades
+# (Talos renders its default coredns ConfigMap at bootstrap; this inlineManifest
+# is applied after and wins). Changes vs the Talos default:
+#   - forward goldentooth.net -> 192.168.1.1 (LAN resolver): *.goldentooth.net
+#     records point at internal IPs (gateway 10.4.11.1, registry 10.4.11.8,
+#     control-plane VIP 10.4.0.9). Resolving them via public 8.8.8.8/1.1.1.1 was
+#     unreliable under load (CoreDNS upstream UDP i/o timeouts); the LAN resolver
+#     is a local hop and returns the same correct answers.
+#   - autopath @kubernetes: collapse client search-domain expansion server-side,
+#     eliminating the ~2.5:1 NXDOMAIN amplification (ndots:5) that was driving the
+#     upstream-forward overload.
+inlineManifests:
+  - name: coredns-corefile
+    contents: |
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: coredns
+        namespace: kube-system
+      data:
+        Corefile: |
+          .:53 {
+              errors
+              health {
+                  lameduck 5s
+              }
+              ready
+              log . {
+                  class error
+              }
+              prometheus :9153
+              autopath @kubernetes
+              kubernetes cluster.local in-addr.arpa ip6.arpa {
+                  pods insecure
+                  fallthrough in-addr.arpa ip6.arpa
+                  ttl 30
+              }
+              forward goldentooth.net 192.168.1.1
+              forward . 8.8.8.8 1.1.1.1 {
+                 max_concurrent 1000
+              }
+              cache 30 {
+                 disable success cluster.local
+                 disable denial cluster.local
+              }
+              loop
+              reload
+              loadbalance
+          }
 nodes:
   - hostname: allyrion
     ipAddress: 10.4.0.10

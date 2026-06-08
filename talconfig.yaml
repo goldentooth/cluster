@@ -30,16 +30,16 @@ patches:
           registry.goldentooth.net:
             tls:
               ca: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJ0akNDQVYyZ0F3SUJBZ0lRSDV1eERUaVlLbm5oME5KK1drU0Y2ekFLQmdncWhrak9QUVFEQWpBNk1SY3cKRlFZRFZRUUtFdzVIYjJ4a1pXNTBiMjkwYUNCRFFURWZNQjBHQTFVRUF4TVdSMjlzWkdWdWRHOXZkR2dnUTBFZwpVbTl2ZENCRFFUQWVGdzB5TlRFeE1UVXlNakV5TWpCYUZ3MHpOVEV4TVRNeU1qRXlNakJhTURveEZ6QVZCZ05WCkJBb1REa2R2YkdSbGJuUnZiM1JvSUVOQk1SOHdIUVlEVlFRREV4WkhiMnhrWlc1MGIyOTBhQ0JEUVNCU2IyOTAKSUVOQk1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRXZaTmhwamhQNWIvLzMxMGJ2TmhOcVRicAphZFJ1QkdzRjBsa3lTcW9pZWphNXV1c1VkZ3FybzZ0dWFrZjdjczZ0eFEwTWpLb2JoMmV5bFh4VkdyMjNkS05GCk1FTXdEZ1lEVlIwUEFRSC9CQVFEQWdFR01CSUdBMVVkRXdFQi93UUlNQVlCQWY4Q0FRRXdIUVlEVlIwT0JCWUUKRkhTQkJYZGRONXZKdzNCL29uaWdYOCtZVVFTL01Bb0dDQ3FHU000OUJBTUNBMGNBTUVRQ0lBLzZMQzhCNm9kcwpJQzNZYVVjVzNOTW1KL1lWcTJtWXZadHhJNzlFajd3akFpQVdmZTRWYktTT055WUJRa3MwUzJIMDdhUFRoejllCkdqTE9Ia3A4ZkxIS3BRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==
-# Custom CoreDNS Corefile, applied declaratively so it survives Talos upgrades
-# (Talos renders its default coredns ConfigMap at bootstrap; this inlineManifest
-# is applied after and wins). Changes vs the Talos default:
-#   - forward goldentooth.net -> 192.168.1.1 (LAN resolver): *.goldentooth.net
-#     records point at internal IPs (gateway 10.4.11.1, registry 10.4.11.8,
-#     control-plane VIP 10.4.0.9). Resolving them via public 8.8.8.8/1.1.1.1 was
-#     unreliable under load (CoreDNS upstream UDP i/o timeouts); the LAN resolver
-#     is a local hop and returns the same correct answers.
-# (autopath was evaluated but needs `pods verified` to function; the ndots:5
-# NXDOMAIN amplification is instead absorbed per-node by NodeLocal DNSCache.)
+# SUPERSEDED: CoreDNS is now self-managed in GitOps
+# (gitops/infrastructure/coredns/) — Flux owns the Deployment/ConfigMap/Service
+# and drift-corrects the Corefile (incl. `forward goldentooth.net -> 192.168.1.1`,
+# the LAN resolver, because *.goldentooth.net records point at internal IPs and
+# resolving them via public DNS was unreliable under load). cluster.coreDNS is
+# left ENABLED on purpose: Talos's built-in CoreDNS bootstraps DNS on a rebuild
+# (Flux's git source needs DNS to resolve github.com), then Flux reconciles to the
+# gitops spec. This inlineManifest is now redundant/inert (Talos's built-in creates
+# the ConfigMap first and this never overrode it); retained harmlessly and can be
+# dropped on a future talconfig change. See clog 115.
 inlineManifests:
   - name: coredns-corefile
     contents: |
